@@ -14,5 +14,13 @@ attr_accessor :name
     def save
       self.class.all << self
     end
+  def self.destroy_all
+    @@all.clear
+  end 
 
+  def self.create(name)
+    new_genre = self.new(name)
+    new_genre.save
+    new_genre
+  end
 end
