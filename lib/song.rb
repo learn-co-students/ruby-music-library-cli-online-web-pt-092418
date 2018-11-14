@@ -31,4 +31,6 @@ class Song
     @genre = genre
     self.genre.add_song(self)
   end
+  def self.new_from_filename(name)
+  end
 end
