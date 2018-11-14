@@ -1,7 +1,6 @@
 class Artist
   attr_accessor :name, :songs 
   @@all = []
- 
   
   def initialize(artist)
     @name = artist
@@ -36,4 +35,9 @@ class Artist
     
     song_obj.artist ||= self
   end
+  def genres
+    self.songs.collect do |song_obj| 
+      song_obj.genre
+    end.uniq
+  end 
 end
