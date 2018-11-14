@@ -1,9 +1,9 @@
 class MusicLibraryController
   attr_accessor :path
+  attr_reader :new_import
   def initialize(path='./db/mp3s')
     @path = path
-    new_import = MusicImporter.new(path)
-    new_import.import
+    MusicImporter.new(path).import
   end
   def call
     input = gets
@@ -13,5 +13,9 @@ class MusicLibraryController
       puts "What would you like to do?"
       input = gets
     end
+  end
+  def list_songs
+    x = Song.all.sort_by{|song| song.name}
+    x.each.with_index(1){|song, i| puts "#{i}. #{song.artist.name} - #{song.name} - #{song.genre.name}"}
   end
 end

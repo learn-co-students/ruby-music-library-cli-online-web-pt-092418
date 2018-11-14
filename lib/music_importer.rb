@@ -1,3 +1,4 @@
+require 'pry'
 class MusicImporter
   attr_accessor :path
   def initialize(path)
