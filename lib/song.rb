@@ -32,9 +32,10 @@ class Song
     self.genre.add_song(self)
   end
   def self.new_from_filename(fname)
-    artist = Artist.find_or_create_by_name(fname.split(" - ")[0])
-    genre = Genre.find_or_create_by_name(fname.split(/\b.mp3|\s/)[-1])
-    song = Song.new(fname.split(" - ")[1], artist, genre)
+    f = fname.split(" - ")
+    g = Genre.find_or_create_by_name(f[2].split(/\b.mp3/)[-1])
+    a = Artist.find_or_create_by_name(f[0])
+    s = Song.new(f[1], a, g)
   end
   def self.create_from_filename(fname)
     self.new_from_filename(fname).save

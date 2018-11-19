@@ -6,7 +6,8 @@ class MusicImporter
   end
   def files
     file = Dir.glob(File.join(self.path,"*.mp3"))
-    file.map{|files| files.split(/\bmp3s+\//).delete_at(1)}
+    file.map{|files| files.split(/\//)[-1]}
+    #binding.pry
   end
   def import
     files.each{|file| Song.create_from_filename(file)}
