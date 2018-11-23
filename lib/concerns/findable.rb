@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 module Concerns
   module Findable
 
@@ -20,5 +21,15 @@ module Concerns
       find_by_name(name) || create(name)
     end
 
+=======
+module Concerns::Findable
+
+  def find_by_name(name)
+    self.all.detect{|i| i.name == name}
+  end
+
+  def find_or_create_by_name(name)
+    find_by_name(name) || self.create(name)
+>>>>>>> 5b04373ddb8df0089bc452718367cebb749fa371
   end
 end
