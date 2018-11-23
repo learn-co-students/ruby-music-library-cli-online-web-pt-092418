@@ -57,6 +57,21 @@ class Song
    find_by_name(song_name) || create(song_name)
  end
 
+ def self.new_from_filename(filename)
+   # binding.pry
+   filename_array = filename.split(" - ")
+   song = self.new(filename_array[1])
+   # ("Thundercat - For Love I Come - dance.mp3") initializes a song based on the passed-in filename
+    # invokes the appropriate Findable methods so as to avoid duplicating objects
+   song.artist = Artist.find_or_create_by_name(filename_array[0])
+   song.genre = Genre.find_or_create_by_name(filename_array[2].gsub(".mp3", ""))
+   song
+ end
+
+ def self.create_from_filename(filename)
+   song = self.new_from_filename(filename).save
+   song
+ end
 
 
 
