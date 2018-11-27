@@ -19,9 +19,12 @@ class MusicLibraryController
     puts "What would you like to do?"
     
     input = gets.chomp
+     
     while input != 'exit'
       puts "What would you like to do"
       input = gets.chomp
+      
+      cli_process(input)
     end 
     input
   end
@@ -100,9 +103,28 @@ class MusicLibraryController
       if input == nil
 
       else
-        play_song = Song.all.find {|song| song.name == input}
-        puts "Playing #{song.name} by #{song.artist}"
+        song_number = input.to_i
+        if song_number > 0 && song_number < Song.all.length
+          song = Song.all[song_number]
+          puts "Playing #{song.name} by #{song.artist.name}"
+        end
       end
     end
-
+    
+    def cli_process(input)
+      
+      if input == list_songs
+        list_songs
+      elseif input == list_artists
+        list_artists
+      elseif input == list_genres
+        list_genres
+      elsif input == list_songs_by_artist
+        list_songs_by_artist
+      elsif input == list_songs_by_genre
+        list_songs_by_genre
+      else input == play_song
+        play_song
+      end
+    end
   end
