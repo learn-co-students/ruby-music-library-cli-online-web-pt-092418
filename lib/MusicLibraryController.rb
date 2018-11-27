@@ -63,15 +63,47 @@ class MusicLibraryController
     else  
       the_artist = Artist.all.find { |artist| artist.name == input}
       if the_artist
-        song = Song.all.sort_by {|artist| 
-          artist.name = the_artist
+        sorted_song = the_artist.songs.sort_by {|artist|
+          artist.name
         }
-        the_artist.song.each.with_index(1) {|songs, i|
-          puts "#{i}. #{songs.name}"
+        sorted_song.uniq.each.with_index(1){|song, i|
+          puts "#{i}. #{song.name} - #{song.genre.name}"
         }
       end
     end
   
   end
 
-end
+    def list_songs_by_genre
+      puts "Please enter the name of a genre:"
+
+      input = gets.chomp
+
+      if input  ==nil
+
+      else
+        the_genre = Genre.all.find {|genre| genre.name == input}
+        if the_genre
+          sorted_song = the_genre.songs.sort_by {|genre|
+            genre.name
+          }
+          sorted_song.uniq.each.with_index(1) {|song, i|
+            puts"#{i}. #{song.artist.name} - #{song.name}"
+          }
+        end
+      end
+    end
+    
+    def play_song
+      puts list_songs.sort
+      puts "Which song number would you like to play?"
+      input = gets.chomp
+      if input == nil
+
+      else
+         Artist.all.find {|song| song.name == input}
+        puts "Playing #{song.name} by #{song.artist}"
+      end
+    end
+
+  end
