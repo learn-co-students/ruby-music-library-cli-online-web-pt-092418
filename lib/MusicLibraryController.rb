@@ -95,13 +95,12 @@ class MusicLibraryController
     end
     
     def play_song
-      puts list_songs.sort
       puts "Which song number would you like to play?"
       input = gets.chomp
       if input == nil
 
       else
-         Artist.all.find {|song| song.name == input}
+        play_song = Song.all.find {|song| song.name == input}
         puts "Playing #{song.name} by #{song.artist}"
       end
     end
