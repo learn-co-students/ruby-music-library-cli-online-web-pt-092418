@@ -19,7 +19,7 @@ class MusicLibraryController
     puts "What would you like to do?"
     
     input = gets.chomp
-     
+      cli_process(input)
     while input != 'exit'
       puts "What would you like to do"
       input = gets.chomp
@@ -113,17 +113,17 @@ class MusicLibraryController
     
     def cli_process(input)
       
-      if input == list_songs
+      if input == "list songs"
         list_songs
-      elseif input == list_artists
+      elsif input == "list artists"
         list_artists
-      elseif input == list_genres
+      elsif input == "list genres"
         list_genres
-      elsif input == list_songs_by_artist
+      elsif input == "list artist"
         list_songs_by_artist
-      elsif input == list_songs_by_genre
+      elsif input == "list genre"
         list_songs_by_genre
-      else input == play_song
+      elsif input == "play song"
         play_song
       end
     end
